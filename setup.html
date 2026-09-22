@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0f1115">
+  <title>接口配置向导 · P2-06</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="platform-page">
+  <div class="platform-shell setup-shell">
+    <div class="platform-breadcrumb"><a href="index.html">首页总览</a> · <a href="experiment.html?id=P2-06">P2-06 工作台</a> · 接口配置</div>
+    <header class="platform-hero compact"><div><div class="platform-kicker">P2-06 · API SETUP</div><h1>接口配置向导</h1><p>想让不同手机的行为自动汇总时，再配置 Cloudflare Worker；不配置也可以用本机记录完成演示。</p></div><div class="workbench-meta"><span class="status-chip">可选</span><small>本机模式默认可用</small></div></header>
+    <section class="platform-section-title"><span>1</span><h2>选择数据方式</h2><em>零配置也能先完成课程展示</em></section>
+    <section class="setup-choice-grid"><article class="setup-choice active"><b>💻</b><strong>本机记录</strong><p>记录保存在当前浏览器 localStorage，适合单机演示和离线预览。</p></article><article class="setup-choice"><b>☁️</b><strong>Cloudflare Worker + D1</strong><p>所有参与端把记录 POST 到 Worker，后台通过口令读取 D1 汇总。</p></article></section>
+    <section class="platform-section-title"><span>2</span><h2>填写接口</h2><em>地址应指向 Worker 根地址，不要重复填写 `/api/participant`</em></section>
+    <section class="workbench-panel setup-form"><label>Worker API 地址<input id="setupApiUrl" placeholder="https://p206-ab.your-name.workers.dev"></label><label>后台 ADMIN_TOKEN（仅当前浏览器保存）<input id="setupToken" type="password" placeholder="可选，用于后台读取 D1"></label><div class="platform-actions"><button class="platform-btn primary" id="setupSaveBtn">保存配置</button><button class="platform-btn ghost" id="setupTestBtn">测试连接</button><button class="platform-btn ghost" id="setupClearBtn">恢复本机模式</button></div><div class="setup-result" id="setupResult">当前未配置云端接口。</div></section>
+    <section class="platform-section-title"><span>3</span><h2>部署提示</h2><em>前端不保存 Cloudflare 私钥</em></section>
+    <section class="method-note"><strong>Worker 配置步骤</strong><p>先按 DEPLOY.md 建立 D1 表并部署 `worker/`；把公开 Worker URL 填入这里。ADMIN_TOKEN 只用于后台查询，不要写入 GitHub Pages 源码。参与端即使云端临时不可用，也会先保存在本机并给出提示。</p></section>
+    <div class="platform-actions wide"><a class="platform-btn ghost" href="index.html">← 返回首页</a><a class="platform-btn primary" href="experiment.html?id=P2-06">回到工作台</a><a class="platform-btn ghost" href="aggregate.html">汇总统计分析</a></div>
+    <footer class="platform-footer">P2-06 · Cloudflare Worker + D1 为可选云端汇总方案</footer>
+  </div>
+  <script src="assets/config.js"></script><script src="assets/shared.js"></script><script src="assets/setup.js"></script>
+</body>
+</html>

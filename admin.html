@@ -9,7 +9,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body class="admin-page">
+<body class="admin-page platform-page">
   <header class="admin-topbar">
     <div class="admin-wrap topbar-inner">
       <div>
@@ -17,7 +17,10 @@
         <h1>P2-06 实验后台</h1>
       </div>
       <div class="topbar-actions">
-        <a class="ghost-btn" href="index.html" target="_blank" rel="noreferrer">打开参与端 ↗</a>
+        <a class="ghost-btn" href="index.html">平台首页</a>
+        <a class="ghost-btn" href="experiment.html?id=P2-06">实验工作台</a>
+        <a class="ghost-btn" href="share.html?e=P2-06" target="_blank" rel="noreferrer">打开参与端 ↗</a>
+        <a class="ghost-btn" href="aggregate.html">汇总分析</a>
         <button class="primary-small" id="refreshBtn">刷新数据</button>
       </div>
     </div>
@@ -57,13 +60,13 @@
 
     <section class="data-toolbar">
       <div>
-        <strong id="sourceLabel">数据源：本机演示数据</strong>
+        <strong id="sourceLabel">数据源：本机记录</strong>
         <span id="lastSync">尚未刷新</span>
       </div>
       <div class="toolbar-actions">
         <button class="ghost-btn" id="exportCsvBtn">导出 CSV</button>
         <button class="ghost-btn" id="copySummaryBtn">复制报告摘要</button>
-        <button class="danger-ghost" id="resetLocalBtn">清空本机演示数据</button>
+        <button class="danger-ghost" id="resetLocalBtn">清空本机记录</button>
       </div>
     </section>
 
@@ -96,7 +99,7 @@
     <section class="panel">
       <div class="panel-heading">
         <div><span class="admin-kicker">RAW DATA</span><h3>参与记录</h3></div>
-        <span class="stat-note">匿名 participant ID</span>
+        <span class="stat-note">participant ID（匿名）</span>
       </div>
       <div class="table-scroll">
         <table class="records-table">

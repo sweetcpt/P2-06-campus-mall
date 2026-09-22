@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="description" content="P2-06 免运费门槛提示 A/B 实验工作台">
+  <title>P2-06 · A/B 实验工作台</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="platform-page">
+  <div class="platform-shell workbench-shell">
+    <div class="platform-breadcrumb"><a href="index.html">首页总览</a> · <a href="project2.html">项目二</a> · P2-06 实验工作台</div>
+    <header class="platform-hero compact">
+      <div><div class="platform-kicker">P2-06 · LIVE EXPERIMENT WORKBENCH</div><h1>免运费门槛提示：无提示 vs 进度条提示</h1><p>把“距离奖励还有多远”放进真实模拟购物行为中，观察用户是否继续加购并提高最终商品金额。</p></div>
+      <div class="workbench-meta"><span class="status-chip">进行中</span><small>商品金额不含配送费</small></div>
+    </header>
+
+    <section class="platform-section-title"><span>1</span><h2>A / B 两版方案</h2><em>商品、价格、布局和结算保持一致</em></section>
+    <section class="ab-plan-grid">
+      <article class="workbench-plan plan-a" id="planA">
+        <div class="plan-head"><span class="variant-chip variant-a">A · 对照组</span><strong>无提示</strong></div>
+        <div class="phone-preview">
+          <div class="phone-top"><span>湛科生活站</span><b>🛒 1</b></div><div class="phone-title">购物车</div>
+          <div class="phone-item"><span class="mini-art">🌬️</span><span><b>USB 小风扇</b><small>¥39.90 × 1</small></span><strong>¥39.90</strong></div>
+          <div class="phone-total"><span>商品金额</span><b>¥39.90</b></div><div class="phone-total"><span>配送费</span><b>¥6.00</b></div><div class="phone-total total"><span>合计</span><b>¥45.90</b></div>
+        </div>
+        <p>购物车只显示商品金额、配送费和合计，不出现免邮门槛提示。</p>
+      </article>
+      <article class="workbench-plan plan-b" id="planB">
+        <div class="plan-head"><span class="variant-chip variant-b">B · 实验组</span><strong>进度条提示</strong></div>
+        <div class="phone-preview">
+          <div class="phone-top"><span>湛科生活站</span><b>🛒 1</b></div><div class="phone-title">购物车</div>
+          <div class="mini-treatment"><b>再买 ¥13.10 即可免运费</b><span>75%</span><i style="width:75%"></i><small>当前 ¥39.90　　¥53 免邮</small></div>
+          <div class="phone-item"><span class="mini-art">🌬️</span><span><b>USB 小风扇</b><small>¥39.90 × 1</small></span><strong>¥39.90</strong></div>
+          <div class="phone-total"><span>商品金额</span><b>¥39.90</b></div><div class="phone-total"><span>配送费</span><b>¥6.00</b></div><div class="phone-total total"><span>合计</span><b>¥45.90</b></div>
+        </div>
+        <p>显示“再买 ¥13.10 免运费”的进度反馈，并提供低价凑单入口。</p>
+      </article>
+    </section>
+    <section class="parameter-strip"><div><span>初始商品</span><strong>USB 小风扇 · ¥39.90</strong></div><div><span>配送费</span><strong>¥6.00</strong></div><div><span>免邮门槛</span><strong>¥53.00</strong></div><div><span>主指标</span><strong>最终商品金额</strong></div></section>
+
+    <section class="platform-section-title"><span>2</span><h2>实时实验数据</h2><em>只来自参与者完成的真实模拟购物记录</em></section>
+    <section class="workbench-panel">
+      <div class="data-banner" id="dataBanner"><b>⏳</b><span>还没有样本，先邀请同学完成一次模拟购物。</span></div>
+      <div class="metric-grid reference-metrics" id="metricGrid"></div>
+      <p class="data-hint" id="dataHint">样本量 = 真实提交的完成记录；页面不会生成随机样本。</p>
+    </section>
+
+    <section class="platform-section-title"><span>3</span><h2>邀请同学参与</h2><em>分享链接 / 海报，让同学进入参与端</em></section>
+    <section class="workbench-panel invite-panel">
+      <div><strong>参与入口</strong><p>同学打开链接后先登记，再进入校园商城；系统会稳定分配到一个版本，不在页面上公开版本标签。</p></div>
+      <div class="share-url-box"><code id="shareUrl">正在生成…</code><button class="platform-btn small ghost" id="copyShareBtn">复制链接</button></div>
+      <div class="platform-actions"><a class="platform-btn primary" id="openShareBtn" href="share.html?e=P2-06">打开参与端</a><button class="platform-btn ghost" id="shareCardBtn">生成分享卡片</button><a class="platform-btn ghost" href="aggregate.html">查看汇总 →</a></div>
+      <div class="share-card-output hidden" id="shareCardOutput"></div>
+    </section>
+
+    <section class="platform-section-title"><span>4</span><h2>数据收集</h2><em>同设备自动汇总，跨设备可接入 Worker 或导入文件</em></section>
+    <section class="workbench-panel collection-panel">
+      <div class="collection-status"><div><span class="platform-kicker">SOURCE</span><strong id="sourceLabel">数据源：本机记录</strong></div><span id="lastSync">尚未刷新</span></div>
+      <div class="platform-actions"><button class="platform-btn primary" id="refreshDataBtn">刷新数据</button><a class="platform-btn ghost" href="aggregate.html">汇总统计分析</a><a class="platform-btn ghost" href="setup.html">配置接口</a><button class="platform-btn ghost" id="exportCsvBtn">导出 CSV</button></div>
+      <p class="data-hint">API 暂未配置时，行为会安全保存在本机；云端接口失败不会让参与端崩溃。</p>
+    </section>
+
+    <section class="platform-section-title"><span>5</span><h2>结论与解读</h2><em>样本不足时不宣布显著胜出</em></section>
+    <section class="workbench-panel conclusion-panel">
+      <div class="data-banner neutral" id="conclusionBanner"><b>📊</b><span>样本不足，暂不下显著性结论。</span></div>
+      <div class="conclusion-grid" id="conclusionGrid"></div>
+      <div class="interpretation-stack" id="interpretation"></div>
+    </section>
+
+    <div class="platform-actions wide"><a class="platform-btn ghost" href="project2.html">← 返回项目二</a><a class="platform-btn primary" href="share.html?e=P2-06">去参与端</a><a class="platform-btn ghost" href="admin.html">打开旧版后台</a></div>
+    <footer class="platform-footer">P2-06 · 免运费门槛提示 A/B 实验 · 样本来自真实参与行为</footer>
+  </div>
+  <script src="assets/config.js"></script>
+  <script src="assets/shared.js"></script>
+  <script src="assets/workbench.js"></script>
+</body>
+</html>

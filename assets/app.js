@@ -3,6 +3,7 @@
   var P = window.P2;
   var products = window.P2_PRODUCTS || [];
   var session = P.createSession(false);
+  var profile = P.getProfile && P.getProfile();
   var grid = document.getElementById('productGrid');
   var intro = document.getElementById('introSheet');
   var cartSheet = document.getElementById('cartSheet');
@@ -11,6 +12,9 @@
   var treatment = document.getElementById('treatmentArea');
   var cartLines = document.getElementById('cartLines');
   var toastTimer = null;
+
+  var profileStrip=document.getElementById('profileStrip');
+  if(profileStrip && profile){ profileStrip.textContent='参与者 '+profile.name+' · 模拟购物，不产生真实订单'; }
 
   function product(id){ return products.find(function(x){return x.id===id;}); }
   function cartQty(){ return Object.keys(session.cart||{}).reduce(function(n,id){return n+(session.cart[id]||0);},0); }

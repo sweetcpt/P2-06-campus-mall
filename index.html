@@ -2,118 +2,65 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f7f8fb">
-  <meta name="description" content="湛科生活站 · 湛江校园生活购物体验">
-  <title>湛科生活站 · 校园商城</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="description" content="网络营销 A/B 实验平台 · 湛江科技学院 P2-06">
+  <title>网络营销 A/B 实验平台 · 湛江科技学院</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body class="shop-page">
-  <div class="app-shell">
-    <header class="shop-header">
+<body class="platform-page">
+  <div class="platform-shell">
+    <div class="platform-breadcrumb">首页总览 · 校园商城与私域社群转化 · P2-06</div>
+
+    <header class="platform-hero">
       <div>
-        <div class="eyebrow">麻章校区 · 校园生活实验店</div>
-        <h1>湛科生活站</h1>
+        <div class="platform-kicker">NETWORK MARKETING A/B LAB</div>
+        <h1>网络营销 A/B 实验平台</h1>
+        <p>湛江科技学院 · 粤西校园生活场景 · 把实验真正跑起来，发出参与链接、收集行为、看见真实结果。</p>
       </div>
-      <button class="icon-btn cart-trigger" id="headerCart" aria-label="打开购物车">
-        <span class="cart-icon">🛒</span><span class="cart-count" id="cartCount">0</span>
-      </button>
+      <div class="platform-hero-mark" aria-hidden="true"><span>AB</span><small>LAB</small></div>
     </header>
 
-    <main>
-      <section class="hero-card">
-        <div class="hero-copy">
-          <span class="hero-pill">开学季 · 宿舍刚需</span>
-          <h2>湛江热起来，宿舍好物先备齐。</h2>
-        <p>校内自提 / 麻章校区配送 · 模拟下单，不会产生真实交易。</p>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <span>🌬️</span><span>☀️</span><span>📦</span>
-        </div>
-      </section>
+    <section class="platform-banner">
+      <div class="banner-icon">⚡</div>
+      <div><strong>当前实验：P2-06 免运费门槛提示</strong><p>先看实验工作台，再把参与入口发给同学；样本只来自真实的模拟购物行为。</p></div>
+      <a class="platform-btn primary" href="experiment.html?id=P2-06">打开工作台 →</a>
+    </section>
 
-      <section class="section-block">
-        <div class="section-heading">
-          <div>
-            <span class="section-kicker">为你推荐</span>
-            <h3>宿舍生活好物</h3>
-          </div>
-          <span class="tiny-note">价格均为实验模拟</span>
-        </div>
-        <div class="product-grid" id="productGrid"></div>
-      </section>
+    <section class="platform-section-title"><span>1</span><h2>我的实验进度</h2><em>项目二 · 校园商城小程序与私域社群转化</em></section>
+    <section class="progress-card">
+      <div class="progress-top"><div><span class="platform-kicker">P2 PROJECT</span><h2>校园商城与私域社群转化</h2></div><span class="status-chip">进行中</span></div>
+      <p>围绕湛江宿舍生活、价格敏感和校内配送场景，观察不同营销设计是否改变学生的选择与购买行为。</p>
+      <div class="progress-track-wide"><i style="width:5%"></i></div>
+      <div class="progress-meta"><span>1 / 20 组实验已准备</span><span>当前聚焦 P2-06</span></div>
+      <div class="platform-actions"><a class="platform-btn primary" href="project2.html">进入项目二</a><a class="platform-btn ghost" href="aggregate.html">汇总统计分析</a><a class="platform-btn ghost" href="setup.html">配置数据接口</a></div>
+    </section>
 
-      <section class="why-card">
-        <div class="why-icon">🧪</div>
-        <div>
-          <strong>麻章校区购物说明</strong>
-          <p>宿舍和通勤用品可以一起挑选；点击“模拟结算”不会扣款，也不会生成真实订单。</p>
-        </div>
-      </section>
-    </main>
+    <section class="platform-section-title"><span>2</span><h2>选择实验项目</h2><em>当前版本展示一组可直接运行的 P2 实验</em></section>
+    <section class="experiment-overview-card">
+      <div class="experiment-overview-head"><div><span class="variant-chip variant-b">P2-06</span><h2>免运费门槛提示：无提示 vs 进度条提示</h2><p>购物车 / 结算页 · 主指标：最终商品金额</p></div><span class="metric-pill">¥53 免邮</span></div>
+      <div class="overview-grid"><div><span>实验假设</span><strong>显性化“还差多少”会刺激凑单</strong></div><div><span>初始商品</span><strong>USB 小风扇 · ¥39.90</strong></div><div><span>核心行为</span><strong>继续加购 / 免邮达成 / 结算</strong></div></div>
+      <div class="platform-actions"><a class="platform-btn primary" href="experiment.html?id=P2-06">查看实验工作台</a><a class="platform-btn ghost" href="share.html?e=P2-06">作为参与者答题</a></div>
+    </section>
 
-    <nav class="bottom-nav" aria-label="底部导航">
-      <button class="nav-item active"><span>⌂</span><b>首页</b></button>
-      <button class="nav-item" id="recommendNav"><span>✦</span><b>好物</b></button>
-      <button class="nav-item cart-trigger"><span>🛒</span><b>购物车</b></button>
-      <button class="nav-item" id="aboutNav"><span>i</span><b>说明</b></button>
-    </nav>
+    <section class="platform-section-title"><span>3</span><h2>地域与实验设定</h2><em>所有文案围绕麻章校区，不套用一线城市假设</em></section>
+    <section class="setting-grid">
+      <article><span class="setting-icon">🌴</span><strong>湛江 / 麻章校区</strong><p>高温、紫外线强、台风季明显，宿舍用品和校内配送是自然购物场景。</p></article>
+      <article><span class="setting-icon">💰</span><strong>学生价格敏感</strong><p>免邮门槛、低价凑单商品和配送费都可能改变最终购物车金额。</p></article>
+      <article><span class="setting-icon">🧪</span><strong>一次只改一个变量</strong><p>A/B 两版商品、价格、布局和推荐内容保持一致，只改变免邮提示。</p></article>
+    </section>
+
+    <section class="platform-section-title"><span>4</span><h2>开始使用</h2><em>参考成品式完整链路</em></section>
+    <section class="quick-links">
+      <a href="share.html?e=P2-06"><b>📝</b><span><strong>参与端</strong><small>登记后进入真实模拟商城</small></span><i>→</i></a>
+      <a href="experiment.html?id=P2-06"><b>🧭</b><span><strong>实验工作台</strong><small>A/B 方案、实时数据、分享与结论</small></span><i>→</i></a>
+      <a href="aggregate.html"><b>📊</b><span><strong>汇总统计分析</strong><small>参与记录、行为指标、CSV 导出</small></span><i>→</i></a>
+      <a href="admin.html"><b>⚙️</b><span><strong>后台快捷入口</strong><small>兼容原版 P2-06 管理页</small></span><i>→</i></a>
+    </section>
+
+    <section class="method-note"><strong>统计口径</strong><p>商品金额不含配送费；没有真实记录时不展示虚构结果；样本量不足时只做趋势观察，不强行宣布“B 显著优于 A”。</p></section>
+    <footer class="platform-footer">网络营销 A/B 实验平台 · 湛江科技学院 · P2-06 校园商城实验</footer>
   </div>
-
-  <div class="scrim hidden" id="scrim"></div>
-
-  <section class="sheet intro-sheet" id="introSheet" role="dialog" aria-modal="true" aria-labelledby="introTitle">
-    <div class="sheet-handle"></div>
-    <div class="intro-badge">湛科生活站 · 购物体验</div>
-    <h2 id="introTitle">从一台 USB 小风扇开始</h2>
-    <p>假设你准备在校园商城购买一台 <strong>USB 静音小风扇（¥39.9）</strong>。进入后，你可以直接结算，也可以继续挑选需要的宿舍用品。</p>
-    <div class="intro-product">
-      <div class="product-art art-fan"><span>🌬️</span></div>
-      <div><strong>USB 静音小风扇</strong><span>三档风力 · 宿舍桌面款</span></div>
-      <b>¥39.9</b>
-    </div>
-    <button class="primary-btn full" id="startExperiment">加入购物车并开始</button>
-    <p class="privacy-note">仅生成匿名体验编号，不采集姓名、学号或支付信息。</p>
-  </section>
-
-  <section class="sheet cart-sheet hidden" id="cartSheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title-row">
-      <div><span class="section-kicker">购物车</span><h2 id="cartTitle">确认你的商品</h2></div>
-      <button class="close-btn" id="closeCart" aria-label="关闭">×</button>
-    </div>
-
-    <div id="treatmentArea"></div>
-    <div class="cart-lines" id="cartLines"></div>
-    <div class="cart-empty hidden" id="cartEmpty">购物车还是空的。</div>
-
-    <div class="cart-summary">
-      <div><span>商品金额</span><b id="subtotalText">¥0.00</b></div>
-      <div><span>配送费</span><b id="shippingText">¥6.00</b></div>
-      <div class="total-line"><span>合计</span><b id="totalText">¥0.00</b></div>
-    </div>
-
-    <button class="primary-btn full" id="checkoutBtn">模拟结算</button>
-    <button class="text-btn full" id="continueBtn">继续逛逛</button>
-  </section>
-
-  <section class="sheet success-sheet hidden" id="successSheet" role="dialog" aria-modal="true" aria-labelledby="successTitle">
-    <div class="success-mark">✓</div>
-    <h2 id="successTitle">实验记录已提交</h2>
-    <p>这是模拟结算，没有产生真实订单或付款。</p>
-    <div class="receipt-card">
-      <span>本次购物车金额</span><strong id="receiptValue">¥0.00</strong>
-      <small id="receiptShip">配送费 ¥0.00</small>
-    </div>
-    <button class="primary-btn full" id="restartBtn">重新体验（仅演示）</button>
-  </section>
-
-  <div class="toast hidden" id="toast"></div>
-
-  <script src="assets/config.js"></script>
-  <script src="assets/products.js"></script>
-  <script src="assets/shared.js"></script>
-  <script src="assets/app.js"></script>
 </body>
 </html>

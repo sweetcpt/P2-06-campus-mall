@@ -14,14 +14,23 @@
 - 埋点：开始、首次打开购物车、初始金额、最终金额、凑单金额、是否免邮、是否完成
 - 行为字段：初始/最终商品件数、是否发生继续加购、是否点击模拟结算
 - `admin.html` 实验后台：A/B 样本、平均金额、提升率、凑单率、免邮率、原始记录、CSV 导出、报告摘要
+- 参考成品式完整链路：平台首页、P2 项目页、实验工作台、参与登记、商城、汇总看板、Worker 配置页
+- 参与登记字段：学号、姓名、班级；不收集手机号、地址、支付信息
+- 汇总页支持真实记录、参与明细、CSV 导出和 JSON 记录导入，不生成随机演示样本
 - A/B 预览模式，不污染正式数据：`?preview=A` / `?preview=B`
 - 默认纯静态、本机即可跑
 - 可选 Cloudflare Worker + D1 后端，用于全班不同手机自动汇总
 
 ## 页面
 
-- `index.html`：参与者实验页面
-- `admin.html`：实验数据后台
+- `index.html`：平台首页与项目总览
+- `project2.html`：P2 项目页
+- `experiment.html?id=P2-06`：实验工作台、方案预览、实时汇总和参与链接
+- `share.html?e=P2-06`：正式参与登记入口
+- `shop.html?e=P2-06`：真实校园商城参与端
+- `aggregate.html`：汇总看板、参与明细、CSV 导出
+- `setup.html`：Cloudflare Worker 地址和后台口令配置
+- `admin.html`：兼容后台入口
 
 ## 本机预览
 
@@ -33,10 +42,13 @@ python3 -m http.server 8000
 
 然后访问：
 
-- `http://localhost:8000/`
-- `http://localhost:8000/admin.html`
-- `http://localhost:8000/?preview=A`
-- `http://localhost:8000/?preview=B`
+- `http://localhost:8000/index.html`
+- `http://localhost:8000/experiment.html?id=P2-06`
+- `http://localhost:8000/share.html?e=P2-06`
+- `http://localhost:8000/shop.html?e=P2-06`
+- `http://localhost:8000/aggregate.html`
+
+也可以直接双击 `index.html` 查看静态页面；需要完整跳转和 Worker 回退测试时，使用静态服务器更稳妥。
 
 ## GitHub Pages
 
@@ -52,6 +64,8 @@ python3 -m http.server 8000
 **只做课堂演示时，到这里就可以。** 数据会保存在当前浏览器的 `localStorage`。
 
 如果要让几十个同学各自用手机扫码后自动汇总到同一个后台，GitHub Pages 本身没有数据库，需要部署 `worker/` 中附带的 Cloudflare Worker + D1。见 `DEPLOY.md`。
+
+打开 `setup.html` 可以填写 Worker 地址、保存后台口令并测试 `/api/health`。如果 D1 已经使用第一版结构，需要额外执行 `worker/migrations/0003_add_profile_fields.sql`。
 
 ## 实验设计
 
@@ -81,11 +95,11 @@ python3 -m http.server 8000
 
 `?preview=A` 和 `?preview=B` 仅用于老师/本人验收，不会保存正式实验记录。
 
-正式参与请直接使用主页 URL，不带 `preview` 参数。
+正式参与请使用 `share.html?e=P2-06`，不要带 `preview` 参数；也可以先打开主页，再从项目页进入参与登记。
 
 ## 隐私
 
-默认只生成随机 participant ID，不采集姓名、学号、手机号、地址或支付信息；结算为模拟操作。
+参考成品式参与流程会登记学号、姓名、班级，并继续使用匿名 `participant_id` 做行为去重；系统不采集手机号、地址或支付信息，结算为模拟操作。
 
 ## 自检
 

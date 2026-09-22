@@ -54,7 +54,7 @@
     try{
       var data=await P.fetchResults(tokenIfNeeded());
       rows=data.items||[];
-      document.getElementById('sourceLabel').textContent='数据源：'+(data.source==='remote'?'Cloudflare D1 云端':'本机演示数据');
+      document.getElementById('sourceLabel').textContent='数据源：'+(data.source==='remote'?'Cloudflare D1 云端':'本机记录');
       document.getElementById('lastSync').textContent='最后刷新 '+new Date().toLocaleTimeString('zh-CN',{hour12:false});
       render();
     }catch(e){

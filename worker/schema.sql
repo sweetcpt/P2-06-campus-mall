@@ -1,6 +1,9 @@
 CREATE TABLE IF NOT EXISTS participant_records (
   study_key TEXT NOT NULL,
   participant_id TEXT NOT NULL,
+  student_id TEXT,
+  participant_name TEXT,
+  class_name TEXT,
   variant TEXT NOT NULL CHECK (variant IN ('A','B')),
   status TEXT NOT NULL,
   started_at TEXT,

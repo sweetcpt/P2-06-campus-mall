@@ -3,6 +3,7 @@
   var cfg = window.AB_CONFIG || {};
   var RECORDS_KEY = 'p206_records_v1';
   var SESSION_KEY = 'p206_session_v1';
+  var PROFILE_KEY = 'p206_profile_v1';
   var remoteQueue = Promise.resolve();
 
   function money(v){ return '¥' + Number(v || 0).toFixed(2); }
@@ -28,6 +29,27 @@
     return rec;
   }
   function clearLocalRecords(){ localStorage.removeItem(RECORDS_KEY); }
+  function normalizeProfile(profile){
+    if(!profile || typeof profile!=='object') return null;
+    var out={studentId:String(profile.studentId||'').trim(),name:String(profile.name||'').trim(),className:String(profile.className||'').trim()};
+    return out.studentId && out.name && out.className ? out : null;
+  }
+  function getProfile(){
+    try { return normalizeProfile(JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null')); } catch(e){ return null; }
+  }
+  function setProfile(profile){
+    var out=normalizeProfile(profile);
+    if(!out) throw new Error('profile incomplete');
+    localStorage.setItem(PROFILE_KEY,JSON.stringify(out));
+    return out;
+  }
+  function clearProfile(){ localStorage.removeItem(PROFILE_KEY); }
+  function participantIdForProfile(profile){
+    var text=String(profile.studentId)+'|'+String(cfg.studyKey||'p2-06');
+    var h=2166136261;
+    for(var i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}
+    return 'participant-'+(h>>>0).toString(16).padStart(8,'0');
+  }
   function normalizeSession(s){
     if(!s || typeof s!=='object') return null;
     if(!Object.prototype.hasOwnProperty.call(s,'initialQuantity') && s.cartOpenedAt) s.initialQuantity=1;
@@ -51,13 +73,14 @@
   }
   function createSession(forceNew){
     var preview = previewVariant();
+    var profile = getProfile();
     if(!forceNew && !preview){
       var old = getSession();
-      if(old && old.studyKey === cfg.studyKey){ setSession(old); return old; }
+      if(old && old.studyKey === cfg.studyKey && (!profile || !old.studentId || old.studentId===profile.studentId)){ setSession(old); return old; }
     }
     var s = {
       studyKey: cfg.studyKey,
-      participantId: preview ? 'preview-' + preview.toLowerCase() : uid(),
+      participantId: preview ? 'preview-' + preview.toLowerCase() : (profile ? participantIdForProfile(profile) : uid()),
       variant: preview || (crypto.getRandomValues(new Uint8Array(1))[0] < 128 ? 'A' : 'B'),
       preview: !!preview,
       startedAt: nowISO(),
@@ -72,7 +95,10 @@
       freeShipping: false,
       completedAt: '',
       status: 'started',
-      cart: {}
+      cart: {},
+      studentId: profile ? profile.studentId : '',
+      participantName: profile ? profile.name : '',
+      className: profile ? profile.className : ''
     };
     if(!preview) setSession(s);
     return s;
@@ -152,5 +178,5 @@
     var ci=[diff-1.96*se,diff+1.96*se];
     return {A:A,B:B,total:items.length,diff:diff,lift:lift,z:z,p:p,ci:ci};
   }
-  window.P2 = {cfg:cfg,money:money,round2:round2,uid:uid,nowISO:nowISO,getLocalRecords:getLocalRecords,saveLocalRecord:saveLocalRecord,clearLocalRecords:clearLocalRecords,getSession:getSession,setSession:setSession,clearSession:clearSession,createSession:createSession,pushRecord:pushRecord,fetchResults:fetchResults,clearRemote:clearRemote,summarize:summarize};
+  window.P2 = {cfg:cfg,money:money,round2:round2,uid:uid,nowISO:nowISO,getLocalRecords:getLocalRecords,saveLocalRecord:saveLocalRecord,clearLocalRecords:clearLocalRecords,getProfile:getProfile,setProfile:setProfile,clearProfile:clearProfile,getSession:getSession,setSession:setSession,clearSession:clearSession,createSession:createSession,pushRecord:pushRecord,fetchResults:fetchResults,clearRemote:clearRemote,summarize:summarize};
 })();

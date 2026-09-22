@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f1115">
+  <title>汇总统计分析 · P2-06</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="platform-page">
+  <div class="platform-shell aggregate-shell">
+    <div class="platform-breadcrumb"><a href="index.html">首页总览</a> · <a href="experiment.html?id=P2-06">P2-06 工作台</a> · 汇总统计分析</div>
+    <header class="platform-hero compact"><div><div class="platform-kicker">P2-06 · AGGREGATE ANALYSIS</div><h1>汇总统计分析</h1><p>汇集参与者的真实模拟购物记录，比较 A/B 的最终商品金额与继续加购行为。</p></div><div class="workbench-meta"><span class="status-chip">真实记录</span><small id="aggregateStatus">正在读取…</small></div></header>
+
+    <section class="platform-banner" id="aggregateBanner"><div class="banner-icon">⚡</div><div><strong>样本只来自真实提交</strong><p>当前没有记录时，页面只显示空状态，不生成示例人数或随机结果。</p></div><button class="platform-btn primary" id="aggregateRefresh">刷新数据</button></section>
+
+    <section class="platform-section-title"><span>1</span><h2>总体统计</h2><em>A/B 结果会随真实参与记录更新</em></section>
+    <section class="metric-grid reference-metrics" id="aggMetricGrid"></section>
+
+    <section class="aggregate-chart-grid">
+      <article class="workbench-panel"><div class="panel-heading"><div><span class="platform-kicker">PRIMARY METRIC</span><h2>平均最终商品金额</h2></div><span id="aggLift" class="stat-note">等待数据</span></div><div id="aggBarChart" class="aggregate-bars"></div></article>
+      <article class="workbench-panel"><div class="panel-heading"><div><span class="platform-kicker">BEHAVIOR MIX</span><h2>A / B 完成结构</h2></div></div><div class="donut-wrap"><div class="donut-chart" id="aggDonut"></div><div id="aggLegend" class="legend-list"></div></div></article>
+    </section>
+
+    <section class="platform-section-title"><span>2</span><h2>行为指标</h2><em>商品金额不含配送费</em></section>
+    <section class="workbench-panel"><div class="behavior-table aggregate-behavior" id="aggBehavior"></div><div class="data-hint" id="aggHint">暂无完成记录。</div></section>
+
+    <section class="platform-section-title"><span>3</span><h2>参与者明细</h2><em>按登记资料去重显示</em></section>
+    <section class="workbench-panel"><div class="table-scroll"><table class="records-table reference-table"><thead><tr><th>序号</th><th>学号</th><th>姓名</th><th>班级</th><th>版本</th><th>状态</th><th>最终金额</th><th>继续加购</th><th>免邮</th><th>结算</th><th>时间</th></tr></thead><tbody id="participantBody"></tbody></table></div></section>
+
+    <section class="platform-section-title"><span>4</span><h2>数据导入与导出</h2><em>跨设备可导入行为 JSON 文件</em></section>
+    <section class="workbench-panel import-panel"><div class="drop-zone" id="dropZone"><strong>📥 拖入记录文件，或选择文件</strong><small>支持 JSON 数组、单条 JSON 和逐行 JSON；导入后自动按 participant_id 去重。</small><input id="importInput" type="file" accept=".json,.txt,application/json,text/plain"></div><div class="platform-actions"><button class="platform-btn primary" id="aggregateCsv">导出汇总 CSV</button><button class="platform-btn ghost" id="participantCsv">导出参与明细 CSV</button><button class="platform-btn ghost" id="clearLocalBtn">清空本机记录</button></div><p class="data-hint" id="importHint"></p></section>
+
+    <section class="platform-section-title"><span>5</span><h2>数据接口</h2><em>需要跨设备自动汇总时再配置</em></section>
+    <section class="workbench-panel api-panel"><div class="api-fields"><label>Worker API 地址<input id="apiUrl" placeholder="https://你的-worker.workers.dev"></label><label>后台口令（仅本机保存）<input id="apiToken" type="password" placeholder="可选"></label></div><div class="platform-actions"><button class="platform-btn primary" id="saveApiBtn">保存配置</button><button class="platform-btn ghost" id="pullApiBtn">拉取云端数据</button><a class="platform-btn ghost" href="setup.html">打开配置向导</a></div><p class="data-hint" id="apiTip">未配置时使用本机记录。</p></section>
+    <div class="platform-actions wide"><a class="platform-btn ghost" href="index.html">← 返回首页</a><a class="platform-btn primary" href="share.html?e=P2-06">去参与端</a><a class="platform-btn ghost" href="experiment.html?id=P2-06">回到工作台</a></div>
+    <footer class="platform-footer">P2-06 · 样本量 = 真实完成的模拟购物记录 · 不伪造实验数据</footer>
+  </div>
+  <script src="assets/config.js"></script><script src="assets/shared.js"></script><script src="assets/aggregate.js"></script>
+</body>
+</html>

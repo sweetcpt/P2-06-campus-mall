@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f1115">
+  <title>参与 P2-06 · 湛科生活站</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="platform-page participant-entry-page">
+  <div class="participant-shell">
+    <div class="platform-breadcrumb"><a href="index.html">实验平台</a> · P2-06 参与入口</div>
+    <header class="participant-hero"><span class="variant-chip variant-b">P2-06 · 校园商城实验</span><h1>帮我们体验一次湛科校园商城</h1><p>请先登记基本信息，随后进入一个真实的模拟购物页面。整个过程不会扣款，也不会产生真实订单。</p></header>
+    <section class="entry-card" id="entryCard">
+      <div class="entry-card-title"><span>1</span><div><h2>请先填写身份信息</h2><p>用于保证一人一份答卷和课程汇总去重。</p></div></div>
+      <form id="profileForm" novalidate>
+        <label>学号 <b>*</b><input id="studentId" name="studentId" inputmode="numeric" autocomplete="off" placeholder="例如 2024010101" required></label>
+        <label>姓名 <b>*</b><input id="participantName" name="participantName" autocomplete="name" placeholder="你的姓名" required></label>
+        <label>班级 <b>*</b><input id="className" name="className" autocomplete="organization" placeholder="例如 市场营销2024-1班" required></label>
+        <div class="entry-error" id="entryError" role="alert"></div>
+        <button class="platform-btn primary full" type="submit">登记并进入商城 →</button>
+      </form>
+      <p class="entry-note">只用于本课程实验的答卷去重与结果汇总；不收集手机号、支付信息或其他资料。</p>
+      <noscript><a href="shop.html?e=P2-06">启用 JavaScript 后进入商城；也可直接打开参与端。</a></noscript>
+    </section>
+    <section class="entry-card resume-card hidden" id="resumeCard">
+      <div class="entry-card-title"><span>2</span><div><h2>发现未完成体验</h2><p id="resumeText">可以继续上次的购物体验。</p></div></div>
+      <div class="platform-actions"><button class="platform-btn primary" id="resumeBtn">继续体验</button><button class="platform-btn ghost" id="newBtn">重新登记</button></div>
+    </section>
+    <section class="method-note"><strong>参与提示</strong><p>请像平时挑选宿舍用品一样操作：可以继续加购、修改数量或直接结算。你的真实操作会成为实验样本。</p></section>
+    <footer class="platform-footer">网络营销 A/B 实验平台 · P2-06 · 湛江科技学院</footer>
+  </div>
+  <script src="assets/config.js"></script>
+  <script src="assets/shared.js"></script>
+  <script src="assets/share.js"></script>
+</body>
+</html>

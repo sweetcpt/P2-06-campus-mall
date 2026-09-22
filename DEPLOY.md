@@ -14,9 +14,9 @@
 
 推荐的最终课堂部署方式：
 
-- **GitHub Pages**：托管 `index.html`、`admin.html`、`assets/`
+- **GitHub Pages**：托管所有 HTML 页面、`assets/` 和 `worker/` 说明文件
 - **Cloudflare Worker**：提供数据 API
-- **Cloudflare D1**：保存匿名实验记录
+- **Cloudflare D1**：保存实验行为记录和参与登记字段
 
 ### 1. 安装 Wrangler
 
@@ -52,9 +52,10 @@ wrangler d1 execute p2-06-ab --remote --file=schema.sql
 
 ```bash
 wrangler d1 execute p2-06-ab --remote --file=migrations/0002_add_behavior_fields.sql
+wrangler d1 execute p2-06-ab --remote --file=migrations/0003_add_profile_fields.sql
 ```
 
-新建数据库只执行 `schema.sql`；不要在已经包含这四列的数据库上重复执行增量迁移。
+新建数据库只执行 `schema.sql`；已经完成对应迁移的数据库不要重复执行同一个增量迁移。
 
 ### 4. 设置后台口令
 
@@ -94,13 +95,15 @@ wrangler deploy
 https://p2-06-ab-api.xxxxx.workers.dev
 ```
 
-### 7. 把 API 地址填回前端
+### 7. 把 API 地址配置到前端
 
-打开：
+推荐打开项目的：
 
-`assets/config.js`
+`setup.html`
 
-把：
+输入 Worker 地址和后台口令，点击“保存并测试”。配置只保存在当前浏览器的 `localStorage/sessionStorage`，不会写进仓库。
+
+也可以手动编辑 `assets/config.js`，把：
 
 ```js
 apiBase: ''
@@ -114,34 +117,35 @@ apiBase: 'https://p2-06-ab-api.xxxxx.workers.dev'
 
 重新提交到 GitHub。Pages 更新后，全班的正式实验记录就会进入 D1。
 
-参与端写入失败时会保留本机记录并提示“云端暂未同步”，不会让商城页面崩溃；后台读取云端失败时会显示回退到本机演示数据的状态。
+参与端写入失败时会保留本机记录并提示“云端暂未同步”，不会让商城页面崩溃；后台读取云端失败时会回退到本机真实记录。
 
 ### 8. 后台查看数据
 
 打开：
 
 ```text
-https://你的用户名.github.io/仓库名/admin.html
+https://你的用户名.github.io/仓库名/aggregate.html
 ```
 
-后台第一次读取云端数据会要求输入刚才的 `ADMIN_TOKEN`。口令只保存在当前浏览器的 `sessionStorage`，不会写进仓库。
+汇总页或兼容后台第一次读取云端数据会要求输入刚才的 `ADMIN_TOKEN`。口令只保存在当前浏览器的 `sessionStorage`，不会写进仓库。
 
 ---
 
 ## 正式发给同学前的检查
 
-1. 用 `?preview=A` 看 A 版：购物车中不应出现免邮进度条。
-2. 用 `?preview=B` 看 B 版：购物车应显示 `再买 ¥13.10 即可免运费`。
-3. B 版加入 `Type-C 数据线 ¥9.9` 后，提示应变成还差 `¥3.20`。
-4. 再加任意商品超过 `¥53` 后，应显示 `已达到免运费门槛`，配送费变为免运费。
-5. `admin.html` 能读取数据。
-6. 正式 URL 不要带 `preview`。
-7. 不要在同学群里解释哪一个版本是实验组，以免影响行为。
+1. 打开 `share.html?e=P2-06` 登记一次参与者，再进入商城。
+2. 用 `shop.html?e=P2-06&preview=A` 看 A 版：购物车中不应出现免邮进度条。
+3. 用 `shop.html?e=P2-06&preview=B` 看 B 版：购物车应显示 `再买 ¥13.10 即可免运费`。
+4. B 版加入 `Type-C 数据线 ¥9.9` 后，提示应变成还差 `¥3.20`。
+5. 再加任意商品超过 `¥53` 后，应显示 `已达到免运费门槛`，配送费变为免运费。
+6. `aggregate.html` 能读取真实记录并导出 CSV。
+7. 正式 URL 不要带 `preview`。
+8. 不要在同学群里解释哪一个版本是实验组，以免影响行为。
 
 正式发给同学时使用不带 `preview` 参数的 GitHub Pages 地址，例如：
 
 ```text
-https://你的用户名.github.io/仓库名/
+https://你的用户名.github.io/仓库名/share.html?e=P2-06
 ```
 
 `?preview=A` 和 `?preview=B` 只用于老师验收，不应作为正式实验入口。
