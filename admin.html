@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="P2-06 A/B 实验结果后台">
+  <title>P2-06 实验后台 · 湛科生活站</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="admin-page">
+  <header class="admin-topbar">
+    <div class="admin-wrap topbar-inner">
+      <div>
+        <span class="admin-kicker">网络营销 A/B 实训</span>
+        <h1>P2-06 实验后台</h1>
+      </div>
+      <div class="topbar-actions">
+        <a class="ghost-btn" href="index.html" target="_blank" rel="noreferrer">打开参与端 ↗</a>
+        <button class="primary-small" id="refreshBtn">刷新数据</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-wrap admin-main">
+    <section class="project-hero">
+      <div>
+        <span class="badge">P2-06 · 网络营销 A/B 实训</span>
+        <h2>免运费门槛提示：无提示 vs 进度条提示</h2>
+        <p>验证“距离免运费还差多少”的显性提示，是否会刺激用户凑单并提高最终购物车金额。</p>
+      </div>
+      <div class="study-meta">
+        <div><span>主指标</span><strong>平均最终购物车金额</strong></div>
+        <div><span>免邮门槛</span><strong>¥53.00</strong></div>
+        <div><span>基础配送费</span><strong>¥6.00</strong></div>
+      </div>
+    </section>
+
+    <section class="design-grid">
+      <article class="design-card">
+        <span class="variant-chip variant-a">A · 对照组</span>
+        <h3>无门槛提示</h3>
+        <p>购物车只显示商品金额、配送费和合计，不出现免邮门槛提示。</p>
+      </article>
+      <article class="design-card">
+        <span class="variant-chip variant-b">B · 实验组</span>
+        <h3>免邮进度 + 凑单推荐</h3>
+        <p>显示“再买 ¥X 免运费”的进度条，并推荐低价小件作为凑单入口。</p>
+      </article>
+      <article class="design-card controls-card">
+        <span class="variant-chip neutral">控制变量</span>
+        <h3>其余条件保持一致</h3>
+        <p>商品、价格、初始购物车、配送规则、页面结构和结算按钮全部一致，只改变免邮提示。</p>
+      </article>
+    </section>
+
+    <section class="data-toolbar">
+      <div>
+        <strong id="sourceLabel">数据源：本机演示数据</strong>
+        <span id="lastSync">尚未刷新</span>
+      </div>
+      <div class="toolbar-actions">
+        <button class="ghost-btn" id="exportCsvBtn">导出 CSV</button>
+        <button class="ghost-btn" id="copySummaryBtn">复制报告摘要</button>
+        <button class="danger-ghost" id="resetLocalBtn">清空本机演示数据</button>
+      </div>
+    </section>
+
+    <section class="metric-grid" id="metricGrid"></section>
+
+    <section class="panel-grid">
+      <article class="panel">
+        <div class="panel-heading">
+          <div><span class="admin-kicker">PRIMARY METRIC</span><h3>平均最终购物车金额</h3></div>
+          <span class="stat-note" id="liftNote">等待数据</span>
+        </div>
+        <div class="bar-compare" id="valueChart"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <div><span class="admin-kicker">BEHAVIOR</span><h3>关键行为对比</h3></div>
+        </div>
+        <div class="behavior-table" id="behaviorTable"></div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><span class="admin-kicker">STATISTICAL READ</span><h3>实验解读</h3></div>
+      </div>
+      <div class="interpretation" id="interpretation"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><span class="admin-kicker">RAW DATA</span><h3>参与记录</h3></div>
+        <span class="stat-note">匿名 participant ID</span>
+      </div>
+      <div class="table-scroll">
+        <table class="records-table">
+          <thead><tr><th>参与者</th><th>版本</th><th>状态</th><th>首次金额</th><th>最终金额</th><th>初始件数</th><th>最终件数</th><th>凑单金额</th><th>继续加购</th><th>免邮</th><th>结算</th><th>时间</th></tr></thead>
+          <tbody id="recordsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="deployment-note">
+      <div class="why-icon">☁️</div>
+      <div>
+        <strong>GitHub Pages 可以直接托管参与端和后台页面。</strong>
+        <p>如果只演示，当前版本无需服务器即可运行；如果要让全班不同手机的数据自动汇总，需要再部署随项目附带的 Cloudflare Worker + D1，并在 <code>assets/config.js</code> 填入接口地址。</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/shared.js"></script>
+  <script src="assets/admin.js"></script>
+</body>
+</html>
